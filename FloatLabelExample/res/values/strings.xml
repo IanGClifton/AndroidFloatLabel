@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Float Label Example</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="example_label">Example Label</string>
+    <string name="prefilled">Prefilled</string>
+    <string name="custom_layout">Custom Layout</string>
+</resources>
