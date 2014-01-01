@@ -4,6 +4,8 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -29,6 +31,11 @@ import android.widget.TextView;
  */
 public class FloatLabel extends FrameLayout {
 
+    private static final String SAVE_STATE_KEY_EDIT_TEXT = "saveStateEditText";
+    private static final String SAVE_STATE_KEY_LABEL = "saveStateLabel";
+    private static final String SAVE_STATE_PARENT = "saveStateParent";
+    private static final String SAVE_STATE_TAG = "saveStateTag";
+
     /**
      * Reference to the EditText
      */
@@ -53,6 +60,11 @@ public class FloatLabel extends FrameLayout {
      * True if the TextView label is showing (alpha 1f)
      */
     private boolean mLabelShowing;
+
+    /**
+     * Holds saved state if any is waiting to be restored
+     */
+    private Bundle mSavedState;
 
     /**
      * Interface for providing custom animations to the label TextView.
@@ -179,15 +191,14 @@ public class FloatLabel extends FrameLayout {
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-
         final int childLeft = getPaddingLeft();
         final int childRight = right - left - getPaddingRight();
 
-        final int childTop = getPaddingTop();
+        int childTop = getPaddingTop();
         final int childBottom = bottom - top - getPaddingBottom();
 
         layoutChild(mLabel, childLeft, childTop, childRight, childBottom);
-        layoutChild(mEditText, childLeft, childTop + mLabel.getMeasuredHeight(), childRight, childBottom);
+        layoutChild(mEditText, childLeft, childTop + mLabel.getMeasuredHeight() , childRight, childBottom);
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -233,9 +244,46 @@ public class FloatLabel extends FrameLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        // Restore any state that's been pending before measuring
+        if (mSavedState != null) {
+            Parcelable childState = mSavedState.getParcelable(SAVE_STATE_KEY_EDIT_TEXT);
+            mEditText.onRestoreInstanceState(childState);
+            childState = mSavedState.getParcelable(SAVE_STATE_KEY_LABEL);
+            mLabel.onRestoreInstanceState(childState);
+            mSavedState = null;
+        }
         measureChild(mEditText, widthMeasureSpec, heightMeasureSpec);
         measureChild(mLabel, widthMeasureSpec, heightMeasureSpec);
         setMeasuredDimension(measureWidth(widthMeasureSpec), measureHeight(heightMeasureSpec));
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        if (state instanceof Bundle) {
+            final Bundle savedState = (Bundle) state;
+            if (savedState.getBoolean(SAVE_STATE_TAG, false)) {
+                // Save our state for later since children will have theirs restored after this
+                // and having more than one FloatLabel in an Activity or Fragment means you have
+                // multiple views of the same ID
+                mSavedState = savedState;
+                super.onRestoreInstanceState(savedState.getParcelable(SAVE_STATE_PARENT));
+                return;
+            }
+        }
+
+        super.onRestoreInstanceState(state);
+    }
+
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        final Parcelable superState = super.onSaveInstanceState();
+        final Bundle saveState = new Bundle();
+        saveState.putParcelable(SAVE_STATE_KEY_EDIT_TEXT, mEditText.onSaveInstanceState());
+        saveState.putParcelable(SAVE_STATE_KEY_LABEL, mLabel.onSaveInstanceState());
+        saveState.putBoolean(SAVE_STATE_TAG, true);
+        saveState.putParcelable(SAVE_STATE_PARENT, superState);
+
+        return saveState;
     }
 
     private int measureHeight(int heightMeasureSpec) {
@@ -249,6 +297,7 @@ public class FloatLabel extends FrameLayout {
             result = mEditText.getMeasuredHeight() + mLabel.getMeasuredHeight();
             result += getPaddingTop() + getPaddingBottom();
             result = Math.max(result, getSuggestedMinimumHeight());
+
             if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize);
             }
@@ -318,8 +367,6 @@ public class FloatLabel extends FrameLayout {
         if (mEditText.getText().length() == 0) {
             mLabel.setAlpha(0);
             mLabelShowing = false;
-            final float offset = mLabel.getHeight() / 2;
-            mLabel.setY(-offset);
         } else {
             mLabel.setVisibility(View.VISIBLE);
             mLabelShowing = true;
@@ -374,8 +421,8 @@ public class FloatLabel extends FrameLayout {
                 }
             } else if (!mLabelShowing) {
                 // Text is nonempty; TextView label should be visible
-                mLabelAnimator.onDisplayLabel(mLabel);
                 mLabelShowing = true;
+                mLabelAnimator.onDisplayLabel(mLabel);
             }
         }
 

@@ -5,7 +5,9 @@
         android:id="@id/float_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#FF6699FF"
+        android:textColor="#FF1306DD"
+        android:textStyle="bold"
+        android:typeface="monospace"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText

@@ -6,12 +6,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lines="1"
+        android:textIsSelectable="true"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
+    <!-- The default EditText includes 7dp of top spacing (4dp optical), so we offset by that to tighten up the Views -->
     <EditText
         android:id="@id/edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textAutoCorrect" />
+        android:layout_marginTop="-7dp"
+        android:inputType="text|textAutoCorrect|textCapSentences|textAutoComplete" />
 
 </merge>

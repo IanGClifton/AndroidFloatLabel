@@ -2,9 +2,12 @@
 <resources>
 
     <string name="app_name">Float Label Example</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_toggle_theme">Toggle Theme</string>
 
     <string name="example_label">Example Label</string>
     <string name="prefilled">Prefilled</string>
     <string name="custom_layout">Custom Layout</string>
+
+    <string name="default_settings">Default Settings</string>
+    <string name="custom_animations">Custom Animations</string>
 </resources>
