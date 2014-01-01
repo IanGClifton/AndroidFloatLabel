@@ -1,7 +1,7 @@
 AndroidFloatLabel
 =================
 
-This repository contains an Android library project with a custom view that implements the Float Label pattern (http://dribbble.com/shots/1254439--GIF-Float-Label-Form-Interaction) and an example project using the Float Label library.  The custom View, FloatLabel, basically consists of two pieces: the EditText and the label (a TextView).
+This repository contains an Android library project for Android 4.0+ with a custom view that implements the Float Label pattern (http://dribbble.com/shots/1254439--GIF-Float-Label-Form-Interaction) and an example project using the Float Label library.  The custom View, FloatLabel, basically consists of two pieces: the EditText and the label (a TextView).
 
 YouTube demo: http://www.youtube.com/watch?v=9VoVxw8aAx0
 
