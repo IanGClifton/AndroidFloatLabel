@@ -3,6 +3,8 @@ AndroidFloatLabel
 
 This repository contains an Android library project with a custom view that implements the Float Label pattern (http://dribbble.com/shots/1254439--GIF-Float-Label-Form-Interaction) and an example project using the Float Label library.  The custom View, FloatLabel, basically consists of two pieces: the EditText and the label (a TextView).
 
+YouTube demo: http://www.youtube.com/watch?v=9VoVxw8aAx0
+
 For most use, you can simply use the custom view in your XML layout, specifying a label to use as both the EditText hint and the label TextView with the <code>android:hint</code> property.  Example:
 
     <com.iangclifton.android.floatlabel.FloatLabel
