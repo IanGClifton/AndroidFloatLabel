@@ -7,6 +7,7 @@
     <string name="example_label">Example Label</string>
     <string name="prefilled">Prefilled</string>
     <string name="custom_layout">Custom Layout</string>
+    <string name="custom_hint_color">Custom Hint Color</string>
 
     <string name="default_settings">Default Settings</string>
     <string name="custom_animations">Custom Animations</string>

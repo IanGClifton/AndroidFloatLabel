@@ -4,5 +4,6 @@
         <attr name="android:hint"/>
         <attr name="android:layout"/>
         <attr name="android:text"/>
+        <attr name="android:textColorHint"/>
     </declare-styleable>
 </resources>

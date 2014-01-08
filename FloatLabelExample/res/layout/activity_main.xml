@@ -32,6 +32,13 @@
             android:layout_height="wrap_content"
             android:hint="@string/example_label"
             android:text="@string/prefilled" />
+        
+        <com.iangclifton.android.floatlabel.FloatLabel
+            android:id="@+id/float_label_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/custom_hint_color"
+            android:textColorHint="@drawable/custom_hint_color" />
 
         <TextView
             android:layout_width="match_parent"

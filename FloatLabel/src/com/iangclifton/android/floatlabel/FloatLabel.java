@@ -2,6 +2,7 @@ package com.iangclifton.android.floatlabel;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
@@ -330,16 +331,19 @@ public class FloatLabel extends FrameLayout {
         final int layout;
         final CharSequence text;
         final CharSequence hint;
+        final ColorStateList hintColor;
         if (attrs == null) {
             layout = R.layout.float_label;
             text = null;
             hint = null;
+            hintColor = null;
         } else {
             final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FloatLabel, defStyle, 0);
 
             layout = a.getResourceId(R.styleable.FloatLabel_android_layout, R.layout.float_label);
             text = a.getText(R.styleable.FloatLabel_android_text);
             hint = a.getText(R.styleable.FloatLabel_android_hint);
+            hintColor = a.getColorStateList(R.styleable.FloatLabel_android_textColorHint);
 
             a.recycle();
         }
@@ -352,6 +356,9 @@ public class FloatLabel extends FrameLayout {
         }
         mEditText.setHint(hint);
         mEditText.setText(text);
+        if (hintColor != null) {
+            mEditText.setHintTextColor(hintColor);
+        }
 
         mLabel = (TextView) findViewById(R.id.float_label);
         if (mLabel == null) {
