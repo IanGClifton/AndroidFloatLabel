@@ -12,4 +12,5 @@
     <string name="default_settings">Default Settings</string>
     <string name="custom_animations">Custom Animations</string>
     <string name="custom_floatlabel_color">Custom FloatLabel Color</string>
+    <string name="input_type_password">Input type Password</string>
 </resources>

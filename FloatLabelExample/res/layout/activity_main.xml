@@ -49,6 +49,13 @@
             floatlabel:floatLabelColor="@color/floatLabelColorRed"
             android:textColorHint="@drawable/custom_hint_color" />
 
+        <com.iangclifton.android.floatlabel.FloatLabel
+            android:id="@+id/float_label_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="@string/input_type_password"/>
+        
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

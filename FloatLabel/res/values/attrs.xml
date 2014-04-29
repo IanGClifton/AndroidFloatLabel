@@ -6,5 +6,6 @@
         <attr name="android:text"/>
         <attr name="android:textColorHint"/>
         <attr name="floatLabelColor" format="color"/>
+        <attr name="android:inputType"/>
     </declare-styleable>
 </resources>
