@@ -5,6 +5,12 @@ This repository contains an Android library project for Android 4.0+ with a cust
 
 YouTube demo: http://www.youtube.com/watch?v=9VoVxw8aAx0
 
+Download the source to use it as a library project or use it directly from Maven Central in your dependencies.  For example:
+
+	dependencies {
+		compile 'com.iangclifton.android:floatlabel:1.0'
+	}
+
 For most use, you can simply use the custom view in your XML layout, specifying a label to use as both the EditText hint and the label TextView with the <code>android:hint</code> property.  Example:
 
     <com.iangclifton.android.floatlabel.FloatLabel
@@ -27,7 +33,7 @@ If you want to specify a custom layout to use, you can do something like this:
         android:hint="@string/example_label"
         android:layout="@layout/custom_float_label" />
 
-Your custom layout should include a label TextView (id/float_label) and an EditText (id/edit_text).  Right now, the custom layouts are extremely limited because the FloatLabel simply lays out the label and the EditText and ignores all other views.  This is very efficient but also prevents you from creating a much more complex layout.  Here's an example:
+Your custom layout should include a label TextView (<code>id/float_label</code>) and an EditText (<code>id/edit_text<code>).  Right now, the custom layouts are extremely limited because the FloatLabel simply lays out the label and the EditText and ignores all other views.  This is very efficient but also prevents you from creating a much more complex layout.  Here's an example:
 
     <?xml version="1.0" encoding="utf-8"?>
     <merge xmlns:android="http://schemas.android.com/apk/res/android" >
@@ -74,3 +80,9 @@ You can override the animations used to show and hide the label by implementing 
             label.animate().alpha(0).scaleX(SCALE_X_HIDDEN).scaleY(SCALE_Y_HIDDEN).x(shift);
         }
     }
+
+
+Related Projects
+----------------
+
+* [Fork of Float Label for Android 2.3+](https://github.com/edouardouvrard/AndroidFloatLabel-API9)
