@@ -23,6 +23,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -347,11 +348,16 @@ public class FloatLabel extends FrameLayout {
         final CharSequence text;
         final CharSequence hint;
         final ColorStateList hintColor;
+        final int floatLabelColor;
+        final int inputType;
+
         if (attrs == null) {
             layout = R.layout.float_label;
             text = null;
             hint = null;
             hintColor = null;
+            floatLabelColor = 0;
+            inputType = 0;
         } else {
             final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FloatLabel, defStyle, 0);
 
@@ -359,7 +365,9 @@ public class FloatLabel extends FrameLayout {
             text = a.getText(R.styleable.FloatLabel_android_text);
             hint = a.getText(R.styleable.FloatLabel_android_hint);
             hintColor = a.getColorStateList(R.styleable.FloatLabel_android_textColorHint);
-
+            floatLabelColor = a.getColor(R.styleable.FloatLabel_floatLabelColor,
+                    0);
+            inputType = a.getInt(R.styleable.FloatLabel_android_inputType,InputType.TYPE_CLASS_TEXT);
             a.recycle();
         }
 
@@ -374,6 +382,9 @@ public class FloatLabel extends FrameLayout {
         if (hintColor != null) {
             mEditText.setHintTextColor(hintColor);
         }
+        if (inputType != 0){
+            mEditText.setInputType(inputType);
+        }
 
         mLabel = (TextView) findViewById(R.id.float_label);
         if (mLabel == null) {
@@ -381,6 +392,8 @@ public class FloatLabel extends FrameLayout {
                     "Your layout must have a TextView whose ID is @id/float_label");
         }
         mLabel.setText(mEditText.getHint());
+        if (floatLabelColor != 0)
+            mLabel.setTextColor(floatLabelColor);
 
         // Listen to EditText to know when it is empty or nonempty
         mEditText.addTextChangedListener(new EditTextWatcher());
