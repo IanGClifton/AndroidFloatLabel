@@ -2,13 +2,12 @@ apply plugin: 'android'
 
 dependencies {
     compile 'com.android.support:support-v4:18.0.0'
-    //compile fileTree(dir: 'libs', include: '*.jar')
     compile project(':FloatLabel')
 }
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.1"
+    buildToolsVersion "19.1.0"
 
     sourceSets {
         main {
