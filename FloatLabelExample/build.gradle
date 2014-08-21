@@ -2,7 +2,10 @@ apply plugin: 'android'
 
 dependencies {
     compile 'com.android.support:support-v4:18.0.0'
-    compile project(':FloatLabel')
+    // Use the below dependency if you will have the library locally available
+//    compile project(':FloatLabel')
+    // Comment out the above dependency and use the one below for the AAR in Maven Central
+    compile 'com.iangclifton.android:floatlabel:1.0.1'
 }
 
 android {
