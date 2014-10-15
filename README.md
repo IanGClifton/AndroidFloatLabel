@@ -33,7 +33,7 @@ If you want to specify a custom layout to use, you can do something like this:
         android:hint="@string/example_label"
         android:layout="@layout/custom_float_label" />
 
-Your custom layout should include a label TextView (<code>id/float_label</code>) and an EditText (<code>id/edit_text<code>).  Right now, the custom layouts are extremely limited because the FloatLabel simply lays out the label and the EditText and ignores all other views.  This is very efficient but also prevents you from creating a much more complex layout.  Here's an example:
+Your custom layout should include a label TextView (<code>id/float_label</code>) and an EditText (<code>id/edit_text</code>).  Right now, the custom layouts are extremely limited because the FloatLabel simply lays out the label and the EditText and ignores all other views.  This is very efficient but also prevents you from creating a much more complex layout.  Here's an example:
 
     <?xml version="1.0" encoding="utf-8"?>
     <merge xmlns:android="http://schemas.android.com/apk/res/android" >
