@@ -2,10 +2,15 @@
 <resources>
     <declare-styleable name="FloatLabel">
         <attr name="android:hint"/>
+        <attr name="android:inputType"/>
         <attr name="android:layout"/>
+        <attr name="android:nextFocusDown"/>
+        <attr name="android:nextFocusForward"/>
+        <attr name="android:nextFocusLeft"/>
+        <attr name="android:nextFocusRight"/>
+        <attr name="android:nextFocusUp"/>
         <attr name="android:text"/>
         <attr name="android:textColorHint"/>
         <attr name="floatLabelColor" format="color"/>
-        <attr name="android:inputType"/>
     </declare-styleable>
 </resources>

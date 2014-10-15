@@ -342,6 +342,13 @@ public class FloatLabel extends FrameLayout {
         return result;
     }
 
+    /**
+     * Initializes the view's default values and values from attrs, if not null
+     *
+     * @param context Context to access styled attributes
+     * @param attrs AttributeSet from constructor or null
+     * @param defStyle int resource ID of style to use for defaults
+     */
     private void init(Context context, AttributeSet attrs, int defStyle) {
         // Load custom attributes
         final int layout;
@@ -350,6 +357,11 @@ public class FloatLabel extends FrameLayout {
         final ColorStateList hintColor;
         final int floatLabelColor;
         final int inputType;
+        final int nextFocusDownId;
+        final int nextFocusForwardId;
+        final int nextFocusLeftId;
+        final int nextFocusRightId;
+        final int nextFocusUpId;
 
         if (attrs == null) {
             layout = R.layout.float_label;
@@ -358,16 +370,30 @@ public class FloatLabel extends FrameLayout {
             hintColor = null;
             floatLabelColor = 0;
             inputType = 0;
+            nextFocusDownId = NO_ID;
+            nextFocusForwardId = NO_ID;
+            nextFocusLeftId = NO_ID;
+            nextFocusRightId = NO_ID;
+            nextFocusUpId = NO_ID;
         } else {
             final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FloatLabel, defStyle, 0);
 
+            // Main attributes
             layout = a.getResourceId(R.styleable.FloatLabel_android_layout, R.layout.float_label);
             text = a.getText(R.styleable.FloatLabel_android_text);
             hint = a.getText(R.styleable.FloatLabel_android_hint);
             hintColor = a.getColorStateList(R.styleable.FloatLabel_android_textColorHint);
-            floatLabelColor = a.getColor(R.styleable.FloatLabel_floatLabelColor,
-                    0);
-            inputType = a.getInt(R.styleable.FloatLabel_android_inputType,InputType.TYPE_CLASS_TEXT);
+            floatLabelColor = a.getColor(R.styleable.FloatLabel_floatLabelColor, 0);
+            inputType = a.getInt(R.styleable.FloatLabel_android_inputType, InputType.TYPE_CLASS_TEXT);
+
+            // Next focus views
+            nextFocusDownId = a.getResourceId(R.styleable.FloatLabel_android_nextFocusDown, NO_ID);
+            nextFocusForwardId = a.getResourceId(R.styleable.FloatLabel_android_nextFocusForward, NO_ID);
+            nextFocusLeftId = a.getResourceId(R.styleable.FloatLabel_android_nextFocusLeft, NO_ID);
+            nextFocusRightId = a.getResourceId(R.styleable.FloatLabel_android_nextFocusRight, NO_ID);
+            nextFocusUpId = a.getResourceId(R.styleable.FloatLabel_android_nextFocusUp, NO_ID);
+
+            // Done with TypedArray
             a.recycle();
         }
 
@@ -385,7 +411,14 @@ public class FloatLabel extends FrameLayout {
         if (inputType != 0){
             mEditText.setInputType(inputType);
         }
+        // Set all next focus views
+        mEditText.setNextFocusDownId(nextFocusDownId);
+        mEditText.setNextFocusForwardId(nextFocusForwardId);
+        mEditText.setNextFocusLeftId(nextFocusLeftId);
+        mEditText.setNextFocusRightId(nextFocusRightId);
+        mEditText.setNextFocusUpId(nextFocusUpId);
 
+        // Set up the label view
         mLabel = (TextView) findViewById(R.id.float_label);
         if (mLabel == null) {
             throw new RuntimeException(
