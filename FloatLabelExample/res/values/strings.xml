@@ -3,14 +3,19 @@
 
     <string name="app_name">Float Label Example</string>
     <string name="action_toggle_theme">Toggle Theme</string>
-
     <string name="example_label">Example Label</string>
     <string name="prefilled">Prefilled</string>
     <string name="custom_layout">Custom Layout</string>
     <string name="custom_hint_color">Custom Hint Color</string>
-
     <string name="default_settings">Default Settings</string>
     <string name="custom_animations">Custom Animations</string>
     <string name="custom_floatlabel_color">Custom FloatLabel Color</string>
     <string name="input_type_password">Input type Password</string>
+
+    <string name="title_activity_about">About Float Label</string>
+    <string name="about_body">This application demonstrates the Android Float Label library by Ian G. Clifton. Complete source code is available on GitHub and the SDK is also in Maven Central for easy use.</string>
+    <string name="action_github">GitHub</string>
+    <string name="action_about">About</string>
+    <string name="no_browser">For some bizarre reason, you do not have a browser on your device.  What is wrong with you?</string>
+
 </resources>

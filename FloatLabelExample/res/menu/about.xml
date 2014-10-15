@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.iangclifton.android.floatlabelexample.AboutActivity">
+
+    <item
+        android:id="@+id/action_github"
+        android:icon="@drawable/ic_action_github"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_github" />
+
+</menu>

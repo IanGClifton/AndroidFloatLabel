@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.iangclifton.android.floatlabelexample"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0.1" >
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="20" />
 
     <application
         android:allowBackup="true"
@@ -14,13 +14,21 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.iangclifton.android.floatlabelexample.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.iangclifton.android.floatlabelexample.MainActivity" />
         </activity>
     </application>
 

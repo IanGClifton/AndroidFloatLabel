@@ -1,6 +1,7 @@
 package com.iangclifton.android.floatlabelexample;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,13 +38,19 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_toggle_theme) {
-            if (mTheme == android.R.style.Theme_Holo_Light_DarkActionBar) {
-                mTheme = android.R.style.Theme_Holo;
-            } else {
-                mTheme = android.R.style.Theme_Holo_Light_DarkActionBar;
-            }
-            recreate();
+        final int id = item.getItemId();
+        switch (id) {
+            case R.id.action_toggle_theme:
+                if (mTheme == android.R.style.Theme_Holo_Light_DarkActionBar) {
+                    mTheme = android.R.style.Theme_Holo;
+                } else {
+                    mTheme = android.R.style.Theme_Holo_Light_DarkActionBar;
+                }
+                recreate();
+                return true;
+            case R.id.action_about:
+                startActivity(new Intent(this, AboutActivity.class));
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
