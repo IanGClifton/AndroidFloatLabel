@@ -248,10 +248,10 @@ public class FloatLabel extends FrameLayout {
                 case Gravity.CENTER_HORIZONTAL:
                     childLeft = parentLeft + (parentRight - parentLeft - width) / 2 + lp.leftMargin - lp.rightMargin;
                     break;
-                case Gravity.RIGHT:
+                case Gravity.END:
                     childLeft = parentRight - width - lp.rightMargin;
                     break;
-                case Gravity.LEFT:
+                case Gravity.START:
                 default:
                     childLeft = parentLeft + lp.leftMargin;
             }
