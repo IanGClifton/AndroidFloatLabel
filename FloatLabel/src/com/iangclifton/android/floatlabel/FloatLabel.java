@@ -52,6 +52,7 @@ public class FloatLabel extends FrameLayout {
     private static final String SAVE_STATE_KEY_LABEL = "saveStateLabel";
     private static final String SAVE_STATE_PARENT = "saveStateParent";
     private static final String SAVE_STATE_TAG = "saveStateTag";
+    private static final String SAVE_STATE_KEY_FOCUS = "saveStateFocus";
 
     /**
      * Reference to the EditText
@@ -267,6 +268,9 @@ public class FloatLabel extends FrameLayout {
             mEditText.onRestoreInstanceState(childState);
             childState = mSavedState.getParcelable(SAVE_STATE_KEY_LABEL);
             mLabel.onRestoreInstanceState(childState);
+            if (mSavedState.getBoolean(SAVE_STATE_KEY_FOCUS, false)) {
+                mEditText.requestFocus();
+            }
             mSavedState = null;
         }
         measureChild(mEditText, widthMeasureSpec, heightMeasureSpec);
@@ -297,6 +301,7 @@ public class FloatLabel extends FrameLayout {
         final Bundle saveState = new Bundle();
         saveState.putParcelable(SAVE_STATE_KEY_EDIT_TEXT, mEditText.onSaveInstanceState());
         saveState.putParcelable(SAVE_STATE_KEY_LABEL, mLabel.onSaveInstanceState());
+        saveState.putBoolean(SAVE_STATE_KEY_FOCUS, mEditText.isFocused());
         saveState.putBoolean(SAVE_STATE_TAG, true);
         saveState.putParcelable(SAVE_STATE_PARENT, superState);
 
