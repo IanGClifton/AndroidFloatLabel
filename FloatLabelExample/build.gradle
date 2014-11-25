@@ -1,15 +1,15 @@
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 dependencies {
-    compile 'com.android.support:support-v4:18.0.0'
+    compile 'com.android.support:support-v4:21.0.0'
     // Use the below dependency if you will have the library locally available
     compile project(':FloatLabel')
     // Comment out the above dependency and use the one below for the AAR in Maven Central
-//    compile 'com.iangclifton.android:floatlabel:1.0.1'
+//    compile 'com.iangclifton.android:floatlabel:1.0.2'
 }
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 21
     buildToolsVersion "19.1.0"
 
     sourceSets {
