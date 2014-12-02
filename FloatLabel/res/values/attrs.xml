@@ -12,5 +12,7 @@
         <attr name="android:text"/>
         <attr name="android:textColorHint"/>
         <attr name="floatLabelColor" format="color"/>
+        <attr name="labelId" format="reference"/>
+        <attr name="editTextId" format="reference"/>
     </declare-styleable>
 </resources>
