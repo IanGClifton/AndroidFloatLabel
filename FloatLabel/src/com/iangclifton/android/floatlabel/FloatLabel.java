@@ -357,6 +357,8 @@ public class FloatLabel extends FrameLayout {
     private void init(Context context, AttributeSet attrs, int defStyle) {
         // Load custom attributes
         final int layout;
+        int editTextId = R.id.edit_text;
+        int floatLabelId = R.id.float_label;
         final CharSequence text;
         final CharSequence hint;
         final ColorStateList hintColor;
@@ -385,6 +387,8 @@ public class FloatLabel extends FrameLayout {
 
             // Main attributes
             layout = a.getResourceId(R.styleable.FloatLabel_android_layout, R.layout.float_label);
+            editTextId = a.getResourceId(R.styleable.FloatLabel_editTextId, R.id.edit_text);
+            floatLabelId = a.getResourceId(R.styleable.FloatLabel_labelId, R.id.float_label);
             text = a.getText(R.styleable.FloatLabel_android_text);
             hint = a.getText(R.styleable.FloatLabel_android_hint);
             hintColor = a.getColorStateList(R.styleable.FloatLabel_android_textColorHint);
@@ -403,10 +407,17 @@ public class FloatLabel extends FrameLayout {
         }
 
         inflate(context, layout, this);
-        mEditText = (EditText) findViewById(R.id.edit_text);
+        mEditText = (EditText) findViewById(editTextId);
+        if (mEditText == null) {
+            // fallback to default value
+            mEditText = (EditText) findViewById(R.id.edit_text);
+        }
         if (mEditText == null) {
             throw new RuntimeException(
                     "Your layout must have an EditText whose ID is @id/edit_text");
+        }
+        if (editTextId != R.id.edit_text) {
+            mEditText.setId(editTextId);
         }
         mEditText.setHint(hint);
         mEditText.setText(text);
@@ -424,10 +435,17 @@ public class FloatLabel extends FrameLayout {
         mEditText.setNextFocusUpId(nextFocusUpId);
 
         // Set up the label view
-        mLabel = (TextView) findViewById(R.id.float_label);
+        mLabel = (TextView) findViewById(floatLabelId);
+        if (mLabel == null) {
+            // fallback to default value
+            mLabel = (TextView) findViewById(R.id.float_label);
+        }
         if (mLabel == null) {
             throw new RuntimeException(
                     "Your layout must have a TextView whose ID is @id/float_label");
+        }
+        if (floatLabelId != R.id.float_label) {
+            mLabel.setId(floatLabelId);
         }
         mLabel.setText(mEditText.getHint());
         if (floatLabelColor != 0)
