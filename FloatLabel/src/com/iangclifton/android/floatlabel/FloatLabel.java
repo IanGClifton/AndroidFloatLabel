@@ -363,6 +363,7 @@ public class FloatLabel extends FrameLayout {
         final CharSequence hint;
         final ColorStateList hintColor;
         final int floatLabelColor;
+        final int imeOptions;
         final int inputType;
         final int nextFocusDownId;
         final int nextFocusForwardId;
@@ -376,6 +377,7 @@ public class FloatLabel extends FrameLayout {
             hint = null;
             hintColor = null;
             floatLabelColor = 0;
+            imeOptions = 0;
             inputType = 0;
             nextFocusDownId = NO_ID;
             nextFocusForwardId = NO_ID;
@@ -393,6 +395,7 @@ public class FloatLabel extends FrameLayout {
             hint = a.getText(R.styleable.FloatLabel_android_hint);
             hintColor = a.getColorStateList(R.styleable.FloatLabel_android_textColorHint);
             floatLabelColor = a.getColor(R.styleable.FloatLabel_floatLabelColor, 0);
+            imeOptions = a.getInt(R.styleable.FloatLabel_android_imeOptions, 0);
             inputType = a.getInt(R.styleable.FloatLabel_android_inputType, InputType.TYPE_CLASS_TEXT);
 
             // Next focus views
@@ -424,7 +427,10 @@ public class FloatLabel extends FrameLayout {
         if (hintColor != null) {
             mEditText.setHintTextColor(hintColor);
         }
-        if (inputType != 0){
+        if (imeOptions != 0) {
+            mEditText.setImeOptions(imeOptions);
+        }
+        if (inputType != 0) {
             mEditText.setInputType(inputType);
         }
         // Set all next focus views
