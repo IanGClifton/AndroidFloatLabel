@@ -33,11 +33,11 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 /**
- * A ViewGroup that consists of an EditText and a TextView as the label.<br/>
- * <br/>
+ * A ViewGroup that consists of an EditText and a TextView as the label.<br>
+ * <br>
  * When the EditText is empty, its hint is displayed. When it is nonempty, the
- * TextView label is displayed.<br/>
- * <br/>
+ * TextView label is displayed.<br>
+ * <br>
  * You can set the label programmatically with either
  * {@link #setLabel(CharSequence)} or {@link #setLabel(int)}.
  * 
