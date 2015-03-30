@@ -1,3 +1,12 @@
+v1.0.3
+======
+
+- Removed app icon that was conflicting with some apps
+- Removed allowBackup tag
+- Added support for imeOptions attributes
+- Added support for custom IDs
+
+
 v1.0.2
 ======
 

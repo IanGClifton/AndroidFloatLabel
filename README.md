@@ -15,7 +15,7 @@ Getting Started
 Download the source to use it as a library project or use it directly from Maven Central in your dependencies.  For example:
 
 	dependencies {
-		compile 'com.iangclifton.android:floatlabel:1.0.2'
+		compile 'com.iangclifton.android:floatlabel:1.0.3'
 	}
 
 For most use, you can simply use the custom view in your XML layout, specifying a label to use as both the EditText hint and the label TextView with the <code>android:hint</code> property.  Example:
