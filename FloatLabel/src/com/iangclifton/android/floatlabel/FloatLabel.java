@@ -85,6 +85,12 @@ public class FloatLabel extends FrameLayout {
     private Bundle mSavedState;
 
     /**
+     * True when any setTextWithoutAnimation method is called and then immediately turned false
+     * once the text update has finished.
+     */
+    private boolean mSkipAnimation = false;
+
+    /**
      * Interface for providing custom animations to the label TextView.
      */
     public interface LabelAnimator {
@@ -205,6 +211,109 @@ public class FloatLabel extends FrameLayout {
         } else {
             mLabelAnimator = labelAnimator;
         }
+    }
+
+    /**
+     * Sets the EditText's text with animation
+     *
+     * @param resid int String resource ID
+     */
+    public void setText(int resid) {
+        mEditText.setText(resid);
+    }
+
+    /**
+     * Sets the EditText's text with label animation
+     *
+     * @param text char[] text
+     * @param start int start of char array to use
+     * @param len int characters to use from the array
+     */
+    public void setText(char[] text, int start, int len) {
+        mEditText.setText(text, start, len);
+    }
+
+    /**
+     * Sets the EditText's text with label animation
+     *
+     * @param resid int String resource ID
+     * @param type TextView.BufferType
+     */
+    public void setText(int resid, TextView.BufferType type) {
+        mEditText.setText(resid, type);
+    }
+
+    /**
+     * Sets the EditText's text with label animation
+     *
+     * @param text CharSequence to set
+     */
+    public void setText(CharSequence text) {
+        mEditText.setText(text);
+    }
+
+    /**
+     * Sets the EditText's text with label animation
+     *
+     * @param text CharSequence to set
+     * @param type TextView.BufferType
+     */
+    public void setText(CharSequence text, TextView.BufferType type) {
+        mEditText.setText(text, type);
+    }
+
+    /**
+     * Sets the EditText's text without animating the label
+     *
+     * @param resid int String resource ID
+     */
+    public void setTextWithoutAnimation(int resid) {
+        mSkipAnimation = true;
+        mEditText.setText(resid);
+    }
+
+    /**
+     * Sets the EditText's text without animating the label
+     *
+     * @param text char[] text
+     * @param start int start of char array to use
+     * @param len int characters to use from the array
+     */
+    public void setTextWithoutAnimation(char[] text, int start, int len) {
+        mSkipAnimation = true;
+        mEditText.setText(text, start, len);
+    }
+
+    /**
+     * Sets the EditText's text without animating the label
+     *
+     * @param resid int String resource ID
+     * @param type TextView.BufferType
+     */
+    public void setTextWithoutAnimation(int resid, TextView.BufferType type) {
+        mSkipAnimation = true;
+        mEditText.setText(resid, type);
+    }
+
+    /**
+     * Sets the EditText's text without animating the label
+     *
+     * @param text CharSequence to set
+     */
+    public void setTextWithoutAnimation(CharSequence text) {
+        mSkipAnimation = true;
+        mEditText.setText(text);
+    }
+
+    /**
+     * Sets the EditText's text without animating the label
+     *
+     * @param text CharSequence to set
+     * @param type TextView.BufferType
+     */
+    public void setTextWithoutAnimation(CharSequence text, TextView.BufferType type) {
+        mSkipAnimation = true;
+        mEditText.setText(text, type);
     }
 
     @Override
@@ -510,6 +619,22 @@ public class FloatLabel extends FrameLayout {
     private class EditTextWatcher implements TextWatcher {
         @Override
         public void afterTextChanged(Editable s) {
+            if (mSkipAnimation) {
+                mSkipAnimation = false;
+                if (s.length() == 0) {
+                    // TextView label should be gone
+                    if (mLabelShowing) {
+                        mLabel.setAlpha(0);
+                        mLabelShowing = false;
+                    }
+                } else if (!mLabelShowing) {
+                    // TextView label should be visible
+                    mLabel.setAlpha(1);
+                    mLabel.setY(0);
+                    mLabelShowing = true;
+                }
+                return;
+            }
             if (s.length() == 0) {
                 // Text is empty; TextView label should be invisible
                 if (mLabelShowing) {

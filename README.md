@@ -26,7 +26,9 @@ For most use, you can simply use the custom view in your XML layout, specifying 
         android:layout_height="wrap_content"
         android:hint="@string/example_label" />
 
-You can also dynamically set the label with <code>floatLabel.setLabel("Custom Label")</code> or <code>floatLabel.setLabel(R.string.custom_label)</code>.
+You can also dynamically set the label with <code>floatLabel.setLabel("Custom Label")</code> or <code>floatLabel.setLabel(R.string.custom_label)</code>. You can dynamically set the text of the EditText with <code>floatLabel.setText()</code>. All the typical setText variations are supported. If you want to set the text without an animation (such as if you're programmatically preparing views in onCreate), use <code>floatLabel.setTextWithoutAnimation()</code> (again, all the usual variations are supported).
+
+If you need a reference to the EditText, you can call <code>floatLabel.getEditText()<code>.
 
 Custom Layout
 -------------
@@ -40,7 +42,7 @@ If you want to specify a custom layout to use, you can do something like this:
         android:hint="@string/example_label"
         android:layout="@layout/custom_float_label" />
 
-Your custom layout should include a label TextView (<code>id/float_label</code>) and an EditText (<code>id/edit_text</code>).  Right now, the custom layouts are extremely limited because the FloatLabel simply lays out the label and the EditText and ignores all other views.  This is very efficient but also prevents you from creating a much more complex layout.  Here's an example:
+Your custom layout should include a label TextView (<code>id/float_label</code>) and an EditText (<code>id/edit_text</code>).  The custom layouts are extremely limited because the FloatLabel simply lays out the label and the EditText and ignores all other views.  This is very efficient but also prevents you from creating a much more complex layout.  Here's an example:
 
     <?xml version="1.0" encoding="utf-8"?>
     <merge xmlns:android="http://schemas.android.com/apk/res/android" >
