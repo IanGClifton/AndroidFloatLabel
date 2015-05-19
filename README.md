@@ -28,7 +28,7 @@ For most use, you can simply use the custom view in your XML layout, specifying 
 
 You can also dynamically set the label with <code>floatLabel.setLabel("Custom Label")</code> or <code>floatLabel.setLabel(R.string.custom_label)</code>. You can dynamically set the text of the EditText with <code>floatLabel.setText()</code>. All the typical setText variations are supported. If you want to set the text without an animation (such as if you're programmatically preparing views in onCreate), use <code>floatLabel.setTextWithoutAnimation()</code> (again, all the usual variations are supported).
 
-If you need a reference to the EditText, you can call <code>floatLabel.getEditText()<code>.
+If you need a reference to the EditText, you can call <code>floatLabel.getEditText()</code>.
 
 Custom Layout
 -------------
