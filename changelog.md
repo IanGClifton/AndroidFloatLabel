@@ -1,3 +1,9 @@
+v1.0.4
+======
+
+- Added setText methods to quickly set the EditText text
+- Added setTextWithoutAnimation methods to set the EditText without triggering the label animation
+
 v1.0.3
 ======
 
