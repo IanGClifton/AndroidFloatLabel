@@ -5,7 +5,7 @@ dependencies {
     // Use the below dependency if you will have the library locally available
     compile project(':FloatLabel')
     // Comment out the above dependency and use the one below for the AAR in Maven Central
-//    compile 'com.iangclifton.android:floatlabel:1.0.3'
+//    compile 'com.iangclifton.android:floatlabel:1.0.4'
 }
 
 android {
